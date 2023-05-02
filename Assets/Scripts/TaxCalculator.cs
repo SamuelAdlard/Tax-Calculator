@@ -24,7 +24,7 @@ public class TaxCalculator : MonoBehaviour
 
         // Input
         double grossSalaryInput = GetGrossSalary();
-        string salaryPayPeriod = GetSalaryPayPeriod();
+        int salaryPayPeriod = GetSalaryPayPeriod();
 
         // Calculations
         double grossYearlySalary = CalculateGrossYearlySalary(grossSalaryInput, salaryPayPeriod);
@@ -42,17 +42,19 @@ public class TaxCalculator : MonoBehaviour
         return grossYearlySalary;
     }
 
-    private string GetSalaryPayPeriod()
+    private int GetSalaryPayPeriod()
     {
         // Get from user. E.g. combobox or radio buttons
-        string salaryPayPeriod = "weekly";
+        int salaryPayPeriod = 0;
         return salaryPayPeriod;
     }
 
-    private double CalculateGrossYearlySalary(double grossSalaryInput, string salaryPayPeriod)
+    private double CalculateGrossYearlySalary(double grossSalaryInput, int salaryPayPeriod)
     {
-        // This is a stub, replace with the real calculation and return the result
-        double grossYearlySalary = 50000;
+        double[] payPeriods = { 52.1429f, 26.0714f, 12, 1 };
+        
+        
+        double grossYearlySalary = payPeriods[salaryPayPeriod] * grossSalaryInput;
         return grossYearlySalary;
     }
 
@@ -61,14 +63,16 @@ public class TaxCalculator : MonoBehaviour
         // This is a stub, replace with the real calculation and return the result
         medicareLevyPaid = CalculateMedicareLevy(grossYearlySalary);
         incomeTaxPaid = CalculateIncomeTax(grossYearlySalary);
-        double netIncome = 33000;        
+        double netIncome = grossYearlySalary - medicareLevyPaid - incomeTaxPaid;        
         return netIncome;
     }
 
     private double CalculateMedicareLevy(double grossYearlySalary)
     {
-        // This is a stub, replace with the real calculation and return the result
-        double medicareLevyPaid = 2000;        
+        
+        double medicareLevyPaid = grossYearlySalary * MEDICARE_LEVY;   
+        
+
         return medicareLevyPaid;
     }
 
@@ -76,8 +80,26 @@ public class TaxCalculator : MonoBehaviour
     {
         
         double incomeTaxPaid = 15000;
-
-
+        if (grossYearlySalary <= 18200)
+        {
+            incomeTaxPaid = 0;
+        }
+        else if(grossYearlySalary <= 45000)
+        {
+            incomeTaxPaid = (grossYearlySalary - 18200) * 0.19f;
+        }
+        else if (grossYearlySalary <= 120000)
+        {
+            incomeTaxPaid = ((grossYearlySalary - 45000) * 32.5f) + 5092;
+        }
+        else if (grossYearlySalary <= 180000)
+        {
+            incomeTaxPaid = ((grossYearlySalary - 120000) * 37f) + 29467;
+        }
+        else
+        {
+            incomeTaxPaid = ((grossYearlySalary - 180000) * 45) + 180000;
+        }
         return incomeTaxPaid;
     }
 
