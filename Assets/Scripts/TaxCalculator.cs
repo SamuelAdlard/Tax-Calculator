@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using SpeechLib;
 using System.Threading.Tasks;
+using TMPro;
+using System;
 
 public class TaxCalculator : MonoBehaviour
 {
@@ -10,10 +12,39 @@ public class TaxCalculator : MonoBehaviour
     // Variables
     bool textToSpeechEnabled = true;
 
+    public TMP_InputField inputSalary;
+    public TMP_Text netincome, grossSalary, incomeTax, medicarelevy;
+    public TMP_Dropdown payperiod;
+
+
     private void Start()
     {
         Speak("Welcome to the A.T.O. Tax Calculator");
+        //UnitTesting();
     }
+
+    private void UnitTesting()
+    {
+        double[] testArray = { 10000, 18200, 30000, 45000, 70000, 120000, 150000, 180000, 200000 };
+        double[] testAnswers = { 0, 0, 2242, 6172, 14297, 31897, 42997, 54097, 63097 };
+
+        for (int i = 0; i < testArray.Length; i++)
+        {
+            if (CalculateIncomeTax(testArray[i]) == testAnswers[i])
+            {
+                print("Correct");
+            }
+            else
+            {
+                Debug.LogError("Incorrect");
+                print("Salary: " + testArray[i]);
+                print("Answer Given: " + CalculateIncomeTax(testArray[i]));
+                print("Correct Answer: " + testAnswers[i]);
+            }
+            
+        }
+    }
+
 
     // Run this function on the click event of your 'Calculate' button
     public void Calculate()
@@ -36,16 +67,20 @@ public class TaxCalculator : MonoBehaviour
 
     private double GetGrossSalary()
     {
-        // Get from user. E.g. input box
-        // Validate the input (ensure it is a positive, valid number)
-        double grossYearlySalary = 1000;
-        return grossYearlySalary;
+        double grossSalary;
+        if (!double.TryParse(inputSalary.text, out grossSalary))
+        {
+            print("Error");
+        }
+
+        return grossSalary;
+
     }
 
     private int GetSalaryPayPeriod()
     {
-        // Get from user. E.g. combobox or radio buttons
-        int salaryPayPeriod = 0;
+        
+        int salaryPayPeriod = payperiod.value;
         return salaryPayPeriod;
     }
 
@@ -78,34 +113,38 @@ public class TaxCalculator : MonoBehaviour
 
     private double CalculateIncomeTax(double grossYearlySalary)
     {
-        
-        double incomeTaxPaid = 15000;
+        grossSalary.text = $"Gross Yearly Salary: {Math.Round(grossYearlySalary)}";
+        double incomeTaxPaid = 0;
         if (grossYearlySalary <= 18200)
         {
             incomeTaxPaid = 0;
         }
-        else if(grossYearlySalary <= 45000)
+        else if(grossYearlySalary <= 37000)
         {
             incomeTaxPaid = (grossYearlySalary - 18200) * 0.19f;
         }
-        else if (grossYearlySalary <= 120000)
+        else if (grossYearlySalary <= 87000)
         {
-            incomeTaxPaid = ((grossYearlySalary - 45000) * 32.5f) + 5092;
+            incomeTaxPaid = ((grossYearlySalary - 37000) * 0.325f) + 3572;
         }
         else if (grossYearlySalary <= 180000)
         {
-            incomeTaxPaid = ((grossYearlySalary - 120000) * 37f) + 29467;
+            incomeTaxPaid = ((grossYearlySalary - 87000) * 0.37f) + 19822;
         }
         else
         {
-            incomeTaxPaid = ((grossYearlySalary - 180000) * 45) + 180000;
+            incomeTaxPaid = ((grossYearlySalary - 180000) * 0.45f) + 54232;
         }
-        return incomeTaxPaid;
+        //print(incomeTaxPaid);
+        
+        return Math.Round(incomeTaxPaid);
     }
 
     private void OutputResults(double medicareLevyPaid, double incomeTaxPaid, double netIncome)
     {
-        // Output the following to the GUI
+        medicarelevy.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}" ;
+        incomeTax.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
+        netincome.text = $"Net income: {Math.Round(netIncome).ToString()}";
         // "Medicare levy paid: $" + medicareLevyPaid.ToString("F2");
         // "Income tax paid: $" + incomeTaxPaid.ToString("F2");
         // "Net income: $" + netIncome.ToString("F2");
