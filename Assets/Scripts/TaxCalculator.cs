@@ -15,8 +15,8 @@ public class TaxCalculator : MonoBehaviour
     public TMP_InputField inputSalary;
     public TMP_Text netincome, grossSalary, incomeTax, medicarelevy;
     public TMP_Dropdown payperiod;
-
-
+    public TMP_Dropdown Language_dropdown;
+    public string Language = "English";
     private void Start()
     {
         Speak("Welcome to the A.T.O. Tax Calculator");
@@ -142,16 +142,32 @@ public class TaxCalculator : MonoBehaviour
 
     private void OutputResults(double medicareLevyPaid, double incomeTaxPaid, double netIncome)
     {
-        medicarelevy.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}" ;
-        incomeTax.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
-        netincome.text = $"Net income: {Math.Round(netIncome).ToString()}";
+        if (Language == "Norsk")
+        {
+            medicarelevy.text = $"Medicare avgift betalt: {Math.Round(medicareLevyPaid).ToString()}";
+            incomeTax.text = $"Innbetalt inntektsskatt: {Math.Round(incomeTaxPaid).ToString()}";
+            netincome.text = $"Netto inntekt: {Math.Round(netIncome).ToString()}";
+        }
+        else if(Language == "English")
+        {
+            medicarelevy.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}";
+            incomeTax.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
+            netincome.text = $"Net income: {Math.Round(netIncome).ToString()}";
+        }
+        else
+        {
+            medicarelevy.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}";
+            incomeTax.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
+            netincome.text = $"Net income: {Math.Round(netIncome).ToString()}";
+        }
+        
         // "Medicare levy paid: $" + medicareLevyPaid.ToString("F2");
         // "Income tax paid: $" + incomeTaxPaid.ToString("F2");
         // "Net income: $" + netIncome.ToString("F2");
     }
 
     // Text to Speech
-    private async void Speak(string textToSpeech)
+    public async void Speak(string textToSpeech)
     {
         if(textToSpeechEnabled)
         {
