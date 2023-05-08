@@ -17,6 +17,13 @@ public class TaxCalculator : MonoBehaviour
     public TMP_Dropdown payperiod;
     public TMP_Dropdown Language_dropdown;
     public string Language = "English";
+
+    double medicareLevyPaid = 0;
+    double incomeTaxPaid = 0;
+    double grossSalaryInput;
+    int salaryPayPeriod;
+    double grossYearlySalary;
+    double netIncome;
     private void Start()
     {
         Speak("Welcome to the A.T.O. Tax Calculator");
@@ -50,16 +57,15 @@ public class TaxCalculator : MonoBehaviour
     public void Calculate()
     {
         // Initialisation of variables
-        double medicareLevyPaid = 0;
-        double incomeTaxPaid = 0;
+        
 
         // Input
-        double grossSalaryInput = GetGrossSalary();
-        int salaryPayPeriod = GetSalaryPayPeriod();
+        grossSalaryInput = GetGrossSalary();
+        salaryPayPeriod = GetSalaryPayPeriod();
 
         // Calculations
-        double grossYearlySalary = CalculateGrossYearlySalary(grossSalaryInput, salaryPayPeriod);
-        double netIncome = CalculateNetIncome(grossYearlySalary, ref medicareLevyPaid, ref incomeTaxPaid);
+        grossYearlySalary = CalculateGrossYearlySalary(grossSalaryInput, salaryPayPeriod);
+        netIncome = CalculateNetIncome(grossYearlySalary, ref medicareLevyPaid, ref incomeTaxPaid);
 
         // Output
         OutputResults(medicareLevyPaid, incomeTaxPaid, netIncome);
@@ -156,17 +162,25 @@ public class TaxCalculator : MonoBehaviour
         }
         else
         {
-            medicarelevy.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}";
-            incomeTax.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
-            netincome.text = $"Net income: {Math.Round(netIncome).ToString()}";
+            medicarelevy.text = $"plunder for healys: {Math.Round(medicareLevyPaid).ToString()}";
+            incomeTax.text = $"Treasure stolen: {Math.Round(incomeTaxPaid).ToString()}";
+            netincome.text = $"Yer plunder: {Math.Round(netIncome).ToString()}";
         }
-        
+       
         // "Medicare levy paid: $" + medicareLevyPaid.ToString("F2");
         // "Income tax paid: $" + incomeTaxPaid.ToString("F2");
         // "Net income: $" + netIncome.ToString("F2");
     }
 
-    // Text to Speech
+    public void LanguageChange()
+    {
+        Language = Language_dropdown.captionText.text;
+        print(Language_dropdown.captionText.text);
+        OutputResults(medicareLevyPaid, incomeTaxPaid, netIncome);
+    }
+
+
+        // Text to Speech
     public async void Speak(string textToSpeech)
     {
         if(textToSpeechEnabled)
@@ -181,7 +195,7 @@ public class TaxCalculator : MonoBehaviour
         return Task.Run(() =>
         {
             SpVoice voice = new SpVoice();
-            voice.Speak(textToSpeak);
+            _ = voice.Speak(textToSpeak);
         });
     }
 }

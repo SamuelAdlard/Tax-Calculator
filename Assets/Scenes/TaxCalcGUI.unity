@@ -486,8 +486,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 357.46, y: -13.4913}
-  m_SizeDelta: {x: -990.19, y: -616.7726}
+  m_AnchoredPosition: {x: 323.1, y: -29.6273}
+  m_SizeDelta: {x: -921.47, y: -584.4995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186126882
 MonoBehaviour:
@@ -782,8 +782,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 357.46, y: 63.5029}
-  m_SizeDelta: {x: -990.19, y: -614.7842}
+  m_AnchoredPosition: {x: 323.1, y: 74.554}
+  m_SizeDelta: {x: -921.47, y: -583.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &257851307
 MonoBehaviour:
@@ -1393,8 +1393,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 357.46, y: 138.61}
-  m_SizeDelta: {x: -990.19, y: -613.79}
+  m_AnchoredPosition: {x: 323.1, y: 169.7269}
+  m_SizeDelta: {x: -921.47, y: -593.5162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440219288
 MonoBehaviour:
@@ -2195,8 +2195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 487.23, y: -13.491}
-  m_SizeDelta: {x: 49.7253, y: 47.63}
+  m_AnchoredPosition: {x: 489.81, y: -29.627}
+  m_SizeDelta: {x: 60.0337, y: 63.6652}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &814349925
 MonoBehaviour:
@@ -2343,7 +2343,7 @@ MonoBehaviour:
   incomeTax: {fileID: 403234561}
   medicarelevy: {fileID: 1323393140}
   payperiod: {fileID: 1968433431}
-  Language_dropdown: {fileID: 0}
+  Language_dropdown: {fileID: 1353826631}
   Language: English
 --- !u!1 &972714880
 GameObject:
@@ -3414,7 +3414,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 825233321}
+        m_TargetAssemblyTypeName: TaxCalculator, Assembly-CSharp
+        m_MethodName: LanguageChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1353826632
 MonoBehaviour:
@@ -3841,8 +3853,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 487.23, y: 138.61}
-  m_SizeDelta: {x: 49.7253, y: 47.63}
+  m_AnchoredPosition: {x: 495.8203, y: 169.73}
+  m_SizeDelta: {x: 66.906, y: 70.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1454218071
 MonoBehaviour:
@@ -4217,8 +4229,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 357.4566, y: -83.49132}
-  m_SizeDelta: {x: -990.1868, y: -616.7726}
+  m_AnchoredPosition: {x: 323.1, y: -128}
+  m_SizeDelta: {x: -921.47, y: -593.6625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1547685945
 MonoBehaviour:
@@ -4467,8 +4479,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 487.23, y: -83.491}
-  m_SizeDelta: {x: 49.7253, y: 47.63}
+  m_AnchoredPosition: {x: 489.81, y: -128}
+  m_SizeDelta: {x: 54.884, y: 58.984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600135752
 MonoBehaviour:
@@ -4523,7 +4535,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: levicare medi paid
+          m_StringArgument: levycare medi paid
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1600135753
@@ -5320,8 +5332,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 487.23, y: 63.503}
-  m_SizeDelta: {x: 49.7253, y: 47.63}
+  m_AnchoredPosition: {x: 495.82025, y: 81.42622}
+  m_SizeDelta: {x: 66.906, y: 66.7365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1800421097
 MonoBehaviour:
