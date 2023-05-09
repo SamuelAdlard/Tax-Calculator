@@ -13,10 +13,11 @@ public class TaxCalculator : MonoBehaviour
     bool textToSpeechEnabled = true;
 
     public TMP_InputField inputSalary;
-    public TMP_Text netincome, grossSalary, incomeTax, medicarelevy;
+    public TMP_Text NetIncomeText, GrossSalaryText, IncomeTaxText, MedicareLevyText, ConvertButtonText;
     public TMP_Dropdown payperiod;
     public TMP_Dropdown Language_dropdown;
     public string Language = "English";
+
 
     double medicareLevyPaid = 0;
     double incomeTaxPaid = 0;
@@ -92,9 +93,10 @@ public class TaxCalculator : MonoBehaviour
 
     private double CalculateGrossYearlySalary(double grossSalaryInput, int salaryPayPeriod)
     {
+        //list of payperiods in numbers
         double[] payPeriods = { 52.1429f, 26.0714f, 12, 1 };
         
-        
+        //identifys pay periods
         double grossYearlySalary = payPeriods[salaryPayPeriod] * grossSalaryInput;
         return grossYearlySalary;
     }
@@ -119,7 +121,7 @@ public class TaxCalculator : MonoBehaviour
 
     private double CalculateIncomeTax(double grossYearlySalary)
     {
-        grossSalary.text = $"Gross Yearly Salary: {Math.Round(grossYearlySalary)}";
+        GrossSalaryText.text = $"Gross Yearly Salary: {Math.Round(grossYearlySalary)}";
         double incomeTaxPaid = 0;
         if (grossYearlySalary <= 18200)
         {
@@ -148,28 +150,36 @@ public class TaxCalculator : MonoBehaviour
 
     private void OutputResults(double medicareLevyPaid, double incomeTaxPaid, double netIncome)
     {
+        // language changes
         if (Language == "Norsk")
         {
-            medicarelevy.text = $"Medicare avgift betalt: {Math.Round(medicareLevyPaid).ToString()}";
-            incomeTax.text = $"Innbetalt inntektsskatt: {Math.Round(incomeTaxPaid).ToString()}";
-            netincome.text = $"Netto inntekt: {Math.Round(netIncome).ToString()}";
+            MedicareLevyText.text = $"Medicare avgift betalt: {Math.Round(medicareLevyPaid).ToString()}";
+            IncomeTaxText.text = $"Innbetalt inntektsskatt: {Math.Round(incomeTaxPaid).ToString()}";
+            NetIncomeText.text = $"Netto inntekt: {Math.Round(netIncome).ToString()}";
+            ConvertButtonText.text = "konvertere";
+
         }
         else if(Language == "English")
         {
-            medicarelevy.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}";
-            incomeTax.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
-            netincome.text = $"Net income: {Math.Round(netIncome).ToString()}";
+            MedicareLevyText.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}";
+            IncomeTaxText.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
+            NetIncomeText.text = $"Net income: {Math.Round(netIncome).ToString()}";
+            ConvertButtonText.text = $"Convert";
+
         }
         else
         {
-            medicarelevy.text = $"plunder for healys: {Math.Round(medicareLevyPaid).ToString()}";
-            incomeTax.text = $"Treasure stolen: {Math.Round(incomeTaxPaid).ToString()}";
-            netincome.text = $"Yer plunder: {Math.Round(netIncome).ToString()}";
+            MedicareLevyText.text = $"plunder for healys: {Math.Round(medicareLevyPaid).ToString()}";
+            IncomeTaxText.text = $"Treasure stolen: {Math.Round(incomeTaxPaid).ToString()}";
+            NetIncomeText.text = $"Yer plunder: {Math.Round(netIncome).ToString()}";
+            ConvertButtonText.text = $"MATHY";
+
         }
        
         // "Medicare levy paid: $" + medicareLevyPaid.ToString("F2");
         // "Income tax paid: $" + incomeTaxPaid.ToString("F2");
         // "Net income: $" + netIncome.ToString("F2");
+        // "convert: $" + convertbutton.ToString("F2");
     }
 
     public void LanguageChange()
