@@ -13,7 +13,7 @@ public class TaxCalculator : MonoBehaviour
     bool textToSpeechEnabled = true;
 
     public TMP_InputField inputSalary;
-    public TMP_Text NetIncomeText, GrossSalaryText, IncomeTaxText, MedicareLevyText, ConvertButtonText;
+    public TMP_Text NetIncomeText, GrossSalaryText, IncomeTaxText, MedicareLevyText, ConvertButtonText, Placeholder, GrossSalary;
     public TMP_Dropdown payperiod;
     public TMP_Dropdown Language_dropdown;
     public string Language = "English";
@@ -153,27 +153,30 @@ public class TaxCalculator : MonoBehaviour
         // language changes
         if (Language == "Norsk")
         {
-            MedicareLevyText.text = $"Medicare avgift betalt: {Math.Round(medicareLevyPaid).ToString()}";
-            IncomeTaxText.text = $"Innbetalt inntektsskatt: {Math.Round(incomeTaxPaid).ToString()}";
-            NetIncomeText.text = $"Netto inntekt: {Math.Round(netIncome).ToString()}";
-            ConvertButtonText.text = "konvertere";
-
+            MedicareLevyText.text = $"Medicare avgift betalt: {Math.Round(medicareLevyPaid)}";
+            IncomeTaxText.text = $"Innbetalt inntektsskatt: {Math.Round(incomeTaxPaid)}";
+            NetIncomeText.text = $"Netto inntekt: {Math.Round(netIncome)}";
+            ConvertButtonText.text = "Konvertere";
+            Placeholder.text = "skriv inn lønn";
+            GrossSalary.text = "brutto lønn";
         }
         else if(Language == "English")
         {
             MedicareLevyText.text = $"Medicare Levy paid: {Math.Round(medicareLevyPaid).ToString()}";
             IncomeTaxText.text = $"Income tax paid: {Math.Round(incomeTaxPaid).ToString()}";
             NetIncomeText.text = $"Net income: {Math.Round(netIncome).ToString()}";
-            ConvertButtonText.text = $"Convert";
-
+            ConvertButtonText.text = "Convert";
+            Placeholder.text = "Enter Salary";
+            GrossSalary.text = "gross salary";
         }
         else
         {
             MedicareLevyText.text = $"plunder for healys: {Math.Round(medicareLevyPaid).ToString()}";
             IncomeTaxText.text = $"Treasure stolen: {Math.Round(incomeTaxPaid).ToString()}";
             NetIncomeText.text = $"Yer plunder: {Math.Round(netIncome).ToString()}";
-            ConvertButtonText.text = $"MATHY";
-
+            ConvertButtonText.text = "MATHY";
+            Placeholder.text = "Shovel Dubloons";
+            GrossSalary.text = "YER ANual PLunder";
         }
        
         // "Medicare levy paid: $" + medicareLevyPaid.ToString("F2");
