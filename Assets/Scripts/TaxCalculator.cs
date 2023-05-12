@@ -32,7 +32,7 @@ public class TaxCalculator : MonoBehaviour
     }
 
     private void UnitTesting()
-    {
+    {   //ignore this was testing-sam
         double[] testArray = { 10000, 18200, 30000, 45000, 70000, 120000, 150000, 180000, 200000 };
         double[] testAnswers = { 0, 0, 2242, 6172, 14297, 31897, 42997, 54097, 63097 };
 
@@ -77,6 +77,7 @@ public class TaxCalculator : MonoBehaviour
         double grossSalary;
         if (!double.TryParse(inputSalary.text, out grossSalary))
         {
+            //stops the program from crashing when an invalid character is put in
             print("Error");
         }
 
@@ -86,7 +87,7 @@ public class TaxCalculator : MonoBehaviour
 
     private int GetSalaryPayPeriod()
     {
-        
+        //salary input
         int salaryPayPeriod = payperiod.value;
         return salaryPayPeriod;
     }
@@ -103,13 +104,13 @@ public class TaxCalculator : MonoBehaviour
 
     private double CalculateNetIncome(double grossYearlySalary, ref double medicareLevyPaid, ref double incomeTaxPaid)
     {
-        // This is a stub, replace with the real calculation and return the result
+        // calculations for the text boxes
         medicareLevyPaid = CalculateMedicareLevy(grossYearlySalary);
         incomeTaxPaid = CalculateIncomeTax(grossYearlySalary);
         double netIncome = grossYearlySalary - medicareLevyPaid - incomeTaxPaid;        
         return netIncome;
     }
-
+    //medicare levy from from gross salary
     private double CalculateMedicareLevy(double grossYearlySalary)
     {
         
@@ -123,6 +124,7 @@ public class TaxCalculator : MonoBehaviour
     {
         GrossSalaryText.text = $"Gross Yearly Salary: {Math.Round(grossYearlySalary)}";
         double incomeTaxPaid = 0;
+        // finds tax bracket and files the tax and initail payment
         if (grossYearlySalary <= 18200)
         {
             incomeTaxPaid = 0;
@@ -150,7 +152,7 @@ public class TaxCalculator : MonoBehaviour
 
     private void OutputResults(double medicareLevyPaid, double incomeTaxPaid, double netIncome)
     {
-        // language changes
+        // translation texts
         if (Language == "Norsk")
         {
             MedicareLevyText.text = $"Medicare avgift betalt: {Math.Round(medicareLevyPaid)}";
@@ -187,6 +189,7 @@ public class TaxCalculator : MonoBehaviour
 
     public void LanguageChange()
     {
+        //detects the languauge selected in the dropdown and changes the language variable to text displayed
         Language = Language_dropdown.captionText.text;
         print(Language_dropdown.captionText.text);
         OutputResults(medicareLevyPaid, incomeTaxPaid, netIncome);
@@ -202,7 +205,7 @@ public class TaxCalculator : MonoBehaviour
             await SpeakAsync(textToSpeech);
         }
     }
-
+    //Text to speak
     private Task SpeakAsync(string textToSpeak)
     {
         return Task.Run(() =>
